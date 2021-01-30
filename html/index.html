@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>usermanager</title>
+
+    <script src="../libs/jquery-3.4.1.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="../scripts/BenutzerVerwaltung.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+
+</head>
+
+<body>
+
+<h1 class="wi"> Willkommen in Usermanager</h1>
+
+<h5 id="demo">Waehlen Sie bitte die gewunschte funktionalitaet</h5>
+
+
+<div>
+    <button class="btn btn-primary mb-4" id="bhinzu" onclick="benutzereinfuegen()">Benutzer hinzufügen</button>
+    <button class="btn btn-primary mb-4" id="bueber" onclick="uebersicht()">Benutzeruebersicht</button>
+</div>
+<br>
+<br>
+
+
+<div id="signup">
+
+    <table>
+        <tr>
+            <td>
+                <form id="signupForm" action="/users/add">
+                    <div>
+                        <label>Benutzer Nachname</label>
+                        <input type="text" name="name" id="name" placeholder="Nachname eingeben">
+                    </div>
+
+                    <div>
+                        <label>Benutzer VorName</label>
+                        <input type="text" name="vorname" id="vorname" placeholder="vorname eingeben">
+                    </div>
+                    <div>
+                        <label>Benutzer MAil</label>
+                        <input type="text" name="email" id="email" placeholder="email eingeben" required>
+                    </div>
+
+                    <div>
+                        <label>Rolle</label>
+                        <!-- select form=signupform cest pr -->
+                        <select id="rolle" name="rolle" required>
+                            <option value="0" selected>Kunde</option>
+                            <option value="1">Mitarbeiter</option>
+                            <option value="2">Administrator</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Benutzer password</label>
+                        <br>
+                        <input type="password" name="password" id="password" placeholder="password eingeben" required>
+                        <div class="form-action-buttons">
+                            <button id="ok" type="submit">Benutzer anlegen</button>
+                        </div>
+
+
+                    </div>
+                </form>
+
+
+            </td>
+            <td>
+        </tr>
+    </table>
+    <br>
+
+</div>
+
+
+<div id="usersview" style="visibility: hidden">
+
+
+    <div class="container">
+        <br/>
+        <div class="panel panel-default">
+
+            <div class="panel-heading">Filtereinstellungen</div>
+            <div class="panel-body">
+
+                <fieldset class="col-md-6">
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <label>Nachname wie : </label><br>
+                            <input id="nachnameFilter" type="text">
+                            <label>Vorname wie : </label><br>
+                            <input id="vornameFilter" type="text">
+                            <label>Rolle : </label>
+                            <select id="rolleFilter">
+                                <option value="-1" selected>Alle</option>
+                                <option value="0">Kunde</option>
+                                <option value="1">Mitarbeiter</option>
+                                <option value="2">Administrator</option>
+                            </select>
+                            <label>Sortieren nach: </label>
+                            <select id="orderByFilter">
+                                <option value="Nachname" selected>Nachname</option>
+                                <option value="Vorname">Vorname</option>
+                                <option value="Rolle">Rolle</option>
+                                <option value="Email">Email</option>
+                                <option value="Id">Id</option>
+                            </select>
+
+
+                            <label>Sortierung </label>
+                            <select id="orderType">
+                                <option value="asc" selected>Aufsteigend</option>
+                                <option value="desc" selected>Absteigend</option>
+                            </select>
+                            <br>
+                            <button style="margin: fill" onclick="ApplyFilter();">Filter anwenden</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+
+
+
+        <table id="userstableView" class="table table-striped table-hover">
+
+            <tr>
+                <th>Name</th>
+                <th>Vorname</th>
+                <th>Email</th>
+                <th>Rolle</th>
+                <th>ID</th>
+            </tr>
+
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
